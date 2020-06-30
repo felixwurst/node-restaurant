@@ -1,4 +1,4 @@
-# 14. Node.js-setup for a burger restaurant
+# Node.js-Setup for a Burger Restaurant
 ## Task
 Admins should be able to change the images of their meals at the edit-meal-route.
 Upload new images, show them on the page and delete the old ones.
