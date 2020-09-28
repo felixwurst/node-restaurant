@@ -28,20 +28,20 @@
             </div>
             <div class="row">
                 <!-- loop for burgers -->
-                <% for (let i = 0; i < meals.length; i++) { %> 
+                <%for (let i = 0; i < meals.length; i++) {%> 
                     <div class="col-xl-6 col-md-6 col-lg-6">
                         <div class="single_delicious d-flex align-items-center">
                             <div class="thumb">
-                                <img src="<%= meals[i].imgUrl %>" alt="">
+                                <img src="<%=meals[i].imgUrl%>" alt="">
                             </div>
                             <div class="info">
-                                <h3><%= meals[i].title %></h3>
-                                <p><%= meals[i].description %></p>
-                                <span>$<%= meals[i].price %></span>
+                                <h3><a href="/meal/<%=meals[i].title.trim().replace(/ /g, '_')%>"><%=meals[i].title%></a></h3>
+                                <p><%=meals[i].description%></p>
+                                <span>$<%=meals[i].price%></span>
                             </div>
                         </div>
                     </div>
-                <% } %>
+                <%}%>
             </div>
         </div>
     </div>

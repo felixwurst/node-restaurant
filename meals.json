@@ -1,56 +1,50 @@
-[{
-    "title": "Beefy Burger",
-    "description": "Great way to make your business appear trust and relevant.",
-    "imgUrl": "/img/burger/1.png",
-    "price": 5
-}, {
-    "title": "Burger Boys",
-    "description": "Great way to make your business appear trust and relevant.",
-    "imgUrl": "/img/burger/2.png",
-    "price": 5
-}, {
-    "title": "Burger Bizz",
-    "description": "Great way to make your business appear trust and relevant.",
-    "imgUrl": "/img/burger/3.png",
-    "price": 5
-}, {
-    "title": "Crackles Burger",
-    "description": "Great way to make your business appear trust and relevant.",
-    "imgUrl": "/img/burger/4.png",
-    "price": 5
-}, {
-    "title": "Bull Burger",
-    "description": "Great way to make your business appear trust and relevant.",
-    "imgUrl": "/img/burger/5.png",
-    "price": 5
-}, {
-    "title": "Rocket Burgers",
-    "description": "Great way to make your business appear trust and relevant.",
-    "imgUrl": "/img/burger/6.png",
-    "price": 5
-}, {
-    "title": "Smokin Burger",
-    "description": "Great way to make your business appear trust and relevant.",
-    "imgUrl": "/img/burger/7.png",
-    "price": 5
-}, {
-    "title": "Delish Burger",
-    "description": "Great way to make your business appear trust and relevant.",
-    "imgUrl": "/img/burger/8.png",
-    "price": 5
-}, {
-    "title": "Not So Delicious Burger",
-    "description": "Taste it, but it's not so delicious!",
-    "imgUrl": "/uploadedFiles/Not_So_Delicious_Burger8.png",
-    "price": "1"
-}, {
-    "title": "Good Burger",
-    "description": "Tastes good, try it!",
-    "imgUrl": "/uploadedFiles/Good_Burger8.png",
-    "price": "3"
-}, {
-    "title": "OK Burger",
-    "description": "Tastes ok!",
-    "imgUrl": "/uploadedFiles/OK_Burger11.png",
-    "price": "4"
-}]
+[
+    {
+        "title": "Beefy Burger",
+        "description": "Great way to make your business appear trust and relevant",
+        "imgUrl": "/uploadedFiles/Beefy_Burger0.png",
+        "price": "5"
+    },
+    {
+        "title": "Burger Boys",
+        "description": "Great way to make your business appear trust and relevant.",
+        "imgUrl": "/uploadedFiles/Burger_Boys1.png",
+        "price": "5"
+    },
+    {
+        "title": "Burger Bizz",
+        "description": "Great way to make your business appear trust and relevant.",
+        "imgUrl": "/uploadedFiles/Burger_Bizz2.png",
+        "price": "5"
+    },
+    {
+        "title": "Crackles Burger",
+        "description": "Great way to make your business appear trust and relevant.",
+        "imgUrl": "/uploadedFiles/Crackles_Burger3.png",
+        "price": "5"
+    },
+    {
+        "title": "Bull Burger",
+        "description": "Great way to make your business appear trust and relevant.",
+        "imgUrl": "/uploadedFiles/Bull_Burger4.png",
+        "price": "5"
+    },
+    {
+        "title": "Rocket Burgers",
+        "description": "Great way to make your business appear trust and relevant.",
+        "imgUrl": "/uploadedFiles/Rocket_Burgers5.png",
+        "price": "5"
+    },
+    {
+        "title": "Smokin Burger",
+        "description": "Great way to make your business appear trust and relevant.",
+        "imgUrl": "/uploadedFiles/Smokin_Burger6.png",
+        "price": "5"
+    },
+    {
+        "title": "Delish Burger",
+        "description": "Great way to make your business appear trust and relevant.",
+        "imgUrl": "/uploadedFiles/Delish_Burger7.png",
+        "price": "5"
+    }
+]

@@ -27,39 +27,36 @@
                 </div>
             </div>
             <div class="row">
-                <form class="form-row" action="/admin/editmeal" method="POST" enctype="multipart/form-data">
-                    <!-- burger-loop -->
+                <!-- <form class="form-row" action="/admin/editmeal" method="POST" enctype="multipart/form-data"> -->
                     <% for (let i = 0; i < meals.length; i++) { %>
                         <div class="col-xl-6 col-md-6 col-lg-6">
                             <div class="single_delicious d-flex align-items-center">
                                 <div class="thumb">
-                                    <img src="<%= meals[i].imgUrl %>" alt="">
+                                    <img class="mealThumb" src="<%= meals[i].imgUrl %>" alt="">
                                 </div>
                                 <div class="info">
-                                    <!-- <h2 name="mealIndex"><%= i %></h2> -->
-                                    <div class="form-group">
-                                        <label for="mealImgChange<%= i %>">Change image</label>
-                                        <input type="file" class="form-control-file mealImg" id="mealImgChange<%= i %>" name="mealImg" accept="image/x-png,image/gif,image/jpeg">
-                                    </div>
                                     <div class="form-group">
                                         <label for="mealTitleChange<%= i %>">Change title</label>
-                                        <input type="text" class="form-control mealTitle" id="mealTitleChange<%= i %>" name="mealTitle" value="<%= meals[i].title %>">
+                                        <input type="text" class="form-control mealTitle" id="mealTitleChange<%= i %>" value="<%= meals[i].title %>">
                                     </div>
                                     <div class="form-group">
                                         <label for="mealDescriptionChange<%= i %>">Change description</label>
-                                        <textarea class="form-control mealDescription" id="mealDescriptionChange<%= i %>" name="mealDescription" cols="30" rows="5"><%= meals[i].description %></textarea>
+                                        <textarea class="form-control mealDescription" id="mealDescriptionChange<%= i %>" cols="30" rows="5"><%= meals[i].description %></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="mealPriceChange<%= i %>">Change price</label>
-                                        <span><input type="number" class="form-control mealPrice" id="mealPriceChange<%= i %>" name="mealPrice" style="width: 100px;" value="<%= meals[i].price %>"></span>
+                                        <span><input type="number" class="form-control mealPrice" id="mealPriceChange<%= i %>" style="width: 100px;" value="<%= meals[i].price %>"></span>
                                     </div>
-                                    <!-- <a href="#" class="btn btn-success editBtn" mealid="<%= i %>">save</a> -->
-                                    <input type="submit" class="btn btn-success editBtn" name="editBtn" value="save<%= i %>" mealid="<%= i %>">
+                                    <div class="form-group">
+                                        <label for="mealImgChange<%= i %>">Change image</label>
+                                        <input type="file" class="form-control-file mealImg" id="mealImgChange<%= i %>" accept="image/x-png,image/gif,image/jpeg">
+                                    </div>
+                                    <a href="#" class="btn btn-success editBtn" mealid="<%= i %>">save</a>
                                 </div>
                             </div>
                         </div>
                     <% } %>
-                </form>
+                <!-- </form> -->
             </div>
         </div>
     </div>
@@ -156,51 +153,53 @@
     <%- include('partials/htmlJs') %>
 
     <script>
-        // document.querySelectorAll('.editBtn').forEach(button => {
-        //     button.addEventListener('click', function(e) {
-        //         e.preventDefault();
-                // const mealid = e.target.getAttribute('mealid');                
-                // const mealTitle = e.target.parentElement.querySelector('.mealTitle').value;
-                // const mealDescription = e.target.parentElement.querySelector('.mealDescription').value;
-                // const mealPrice = e.target.parentElement.querySelector('.mealPrice').value;
+        document.querySelectorAll('.editBtn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                // get id, input-values & image
+                const mealid = e.target.getAttribute('mealid');                
+                const mealTitle = e.target.parentElement.querySelector('.mealTitle').value;
+                const mealDescription = e.target.parentElement.querySelector('.mealDescription').value;
+                const mealPrice = e.target.parentElement.querySelector('.mealPrice').value;
+                const mealImg = e.target.parentElement.querySelector('.mealImg').files[0];
+                // create formdata to send image 
+                const fd = new FormData();
+                fd.append('mealid', mealid);
+                fd.append('mealTitle', mealTitle);
+                fd.append('mealDescription', mealDescription);
+                fd.append('mealPrice', mealPrice);
+                if (mealImg) {
+                    fd.append('mealImg', mealImg);
+                };
 
-                // const mealImg = e.target.parentElement.querySelector('.mealImg').files[0].name;
-                // console.log(e.target.parentElement.querySelector('.mealImg').files[0].name);
-                // console.log(mealDescription);
-
-                // // sending data using ajax
-                // $.ajax({
-                //     type: "POST",
-                //     url: "/admin/editmeal",
-                //     data: {
-                //         mealid,
-                //         // mealImg,
-                //         mealTitle,
-                //         mealDescription,
-                //         mealPrice
-                //     },
-                //     // dataType: "dataType",
-                //     success: function (response) {
-                //         // console.log(response);
-                //     },
-                //     error: function (error) {
-                //         // console.log(error);
-                //     }
-                // });
-
-                // // sending data using fetch
-                // postData("/admin/editmeal", {
+                postForm("/admin/editmeal", fd).then(response => {
+                    if (response.status == 200) {
+                        response.json().then(jsonData => {
+                            console.log(jsonData);
+                            // get changed imgUrl as response to update image immediately, timestamp is added to get a new imagename
+                            e.target.parentElement.parentElement.querySelector('.mealThumb').src = jsonData + "?" + new Date().getTime();
+                        })                   
+                    }
+                })              
+                // postJson("/admin/editmeal", {
                 //         mealid,
                 //         mealTitle,
                 //         mealDescription,
                 //         mealPrice
                 // }).then(data => {
                 // })
+            }); 
+        });
 
-        //     }); 
-        // });
-
-        function postData(url = '', data = {}) {
+        // send data as formdata
+        function postForm(url = '', data = {}) {
+            return fetch(url, {
+                method: 'POST',
+                body: data
+            }).then(response => response)
+        }
+        // send data as json
+        function postJson(url = '', data = {}) {
             // Default options are marked with *
             // eslint-disable-next-line no-undef
             return fetch(url, {
@@ -209,15 +208,14 @@
                 cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'same-origin', // include, *same-origin, omit
                 headers: {
-                    //'Content-Type': 'application/json'
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 redirect: 'follow', // manual, *follow, error
                 referrer: 'no-referrer', // no-referrer, *client
                 body: JSON.stringify(data) // body data type must match "Content-Type" header
-            }).then(response => response.json()) // parses JSON response into native Javascript objects
+            }).then(response => response) // parses JSON response into native Javascript objects
         }
-
     </script>
 </body>
 </html>
