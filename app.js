@@ -20,7 +20,9 @@ app.use(fileUpload({
 }));
 app.use(session({
     secret: 'burger',
-    cookie: {}
+    cookie: {},
+    resave: true,
+    saveUninitialized: true
 }));
 app.use(cookieParser());
 
