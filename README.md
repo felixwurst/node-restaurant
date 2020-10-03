@@ -1,4 +1,4 @@
-# Node.js-Setup for a Burger Restaurant
+# Node.js Setup for a Burger Restaurant
 
 ### Description:
 
