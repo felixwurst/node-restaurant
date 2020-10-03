@@ -15,3 +15,10 @@ Admins should be able to change the pictures of their meals. If they upload new 
 -   JavaScript
 -   Node.js
 -   Express.js
+
+### Usage:
+
+1. download the code
+2. run `npm install`
+3. run `npm run start`
+4. open your browser and go to `localhost:3000`
